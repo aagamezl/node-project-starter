@@ -4,15 +4,18 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "types": "types/index.d.ts",
   "scripts": {
     "coverage": "c8 --reporter=lcov ava",
     "coverage:view": "c8 --reporter=html --reporter=text ava",
-    "lint": "standard",
+    "lint": "npm run lint:code && npm run lint:types",
+    "lint:code": "standard",
     "lint:fix": "standard --fix",
+    "lint:types": "tsc",
     "prepare": "husky install",
-    "release:first": "npm run release -- --first-release",
     "test": "ava",
-    "test:watch": "ava --watch"
+    "test:watch": "ava --watch",
+    "build:types": "tsc -p tsconfig.build.types.json"
   },
   "repository": {
     "type": "git",
@@ -29,14 +32,9 @@
     "c8": "^8.0.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "express": "^4.18.2",
     "husky": "^8.0.3",
     "sinon": "^15.2.0",
-    "standard": "^17.1.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "standard": "^17.1.0",
+    "typescript": "^5.1.6"
   }
 }
